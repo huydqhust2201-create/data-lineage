@@ -1,0 +1,29 @@
+[
+  {
+    "source_table": "stg_orders",
+    "source_column": "customer_id",
+    "target_table": "mart_customer_orders",
+    "target_column": "customer_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "llm"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "ordered_at",
+    "target_table": "mart_customer_orders",
+    "target_column": "order_date",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "llm"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "order_total",
+    "target_table": "mart_customer_orders",
+    "target_column": "total_amount",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "llm"
+  }
+]

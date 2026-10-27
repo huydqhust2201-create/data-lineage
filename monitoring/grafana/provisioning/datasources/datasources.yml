@@ -1,0 +1,25 @@
+# Datasource khai báo bằng file (provisioning) chứ không click trong UI —
+# để dashboard commit trong repo tham chiếu được uid cố định, và dựng lại
+# server mới là có ngay y hệt, không ai phải nhớ đã cấu hình gì bằng tay.
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    # uid cố định: dashboard JSON trỏ tới "prometheus". Nếu để Grafana tự
+    # sinh uid thì mỗi lần dựng lại là dashboard trỏ vào hư không.
+    uid: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    jsonData:
+      # Khớp scrape_interval trong prometheus.yml — để Grafana gợi ý bước
+      # thời gian hợp lý và $__rate_interval tính đúng.
+      timeInterval: 15s
+
+  - name: Loki
+    type: loki
+    uid: loki
+    access: proxy
+    url: http://loki:3100

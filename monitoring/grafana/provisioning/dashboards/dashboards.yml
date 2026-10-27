@@ -1,0 +1,16 @@
+# Nạp dashboard từ file trong repo.
+
+apiVersion: 1
+
+providers:
+  - name: lineage-ai
+    orgId: 1
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    # false: sửa trong UI sẽ không ghi đè được file. Cố ý — dashboard là code
+    # trong repo, muốn đổi thì sửa file rồi commit, không sửa tay rồi quên.
+    allowUiUpdates: false
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

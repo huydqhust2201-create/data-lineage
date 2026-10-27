@@ -1,0 +1,20 @@
+{
+  "question": "projected_revenue tính thế nào?",
+  "must_call": [
+    "traverse"
+  ],
+  "must_not_call": [],
+  "max_calls": 4,
+  "band": "expect-column-lineage",
+  "description_expected": false,
+  "requires_tables": [
+    "revenue_alerts_staging",
+    "revenue_alerts_final"
+  ],
+  "must_contain": [
+    "projected_revenue"
+  ],
+  "must_not_contain": [
+    "chưa biết bạn đang nói đến bảng nào"
+  ]
+}

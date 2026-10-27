@@ -1,0 +1,13 @@
+-- S-2 — dữ liệu để nghiệm thu breaking-change alert.
+--
+-- KHÔNG nằm trong đường ingest mẫu. Ingest CÓ CHỦ ĐÍCH, trỏ thẳng vào thư mục
+-- này, và chỉ SAU khi đã ingest samples/hospital.
+--
+-- Vì sao phải hai lượt: graph_build phát hiện drop bằng nx.descendants() trên
+-- graph của lần ingest TRƯỚC. Chạy file này trên database sạch sẽ KHÔNG sinh
+-- alert nào, vì department_revenue chưa tồn tại để mà mất đi.
+--
+-- Vì sao chọn bảng này: nó đang sống và có downstream
+-- (revenue_alerts_staging, revenue_alerts_final). Alert chỉ sinh khi bảng bị
+-- xoá mà VẪN còn người tham chiếu.
+DROP TABLE department_revenue;

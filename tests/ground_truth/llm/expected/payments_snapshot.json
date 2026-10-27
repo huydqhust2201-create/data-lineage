@@ -1,0 +1,2 @@
+{"description":"snapshot block over a source()","band":"expect-high-confidence-true","expected_edges":[
+ {"source_table":"raw.payments","target_table":"payments_snapshot","transform_type":"direct"}]}

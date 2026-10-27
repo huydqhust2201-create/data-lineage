@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      # Trong mạng compose, Postgres nằm ở host "db" chứ không phải localhost
+      DATABASE_URL: postgresql://lineage:lineage@db:5432/lineage
+      EMBEDDING_URL: http://embeddings:80
+    depends_on:
+      - db
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: lineage
+      POSTGRES_PASSWORD: lineage
+      POSTGRES_DB: lineage
+    ports:
+      # 5435 — 5432 bị Postgres native chiếm, 5433 bị 1 container khác (pgvector-db) chiếm sẵn trên máy dev
+      - "5435:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lineage"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  embeddings:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.5
+    platform: linux/amd64
+    command: ["--model-id", "/data/bge-m3"]
+    ports:
+      - "8080:80"
+    volumes:
+      - ./data/tei:/data
+    restart: unless-stopped
+
+volumes:
+  pgdata:

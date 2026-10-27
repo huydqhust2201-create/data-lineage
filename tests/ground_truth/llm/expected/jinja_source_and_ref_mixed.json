@@ -1,0 +1,5 @@
+{"description":"union of two sources and two refs","band":"expect-high-confidence-true","expected_edges":[
+ {"source_table":"raw.orders","target_table":"jinja_source_and_ref_mixed","transform_type":"direct"},
+ {"source_table":"raw.orders_archive","target_table":"jinja_source_and_ref_mixed","transform_type":"direct"},
+ {"source_table":"stg_orders_manual","target_table":"jinja_source_and_ref_mixed","transform_type":"direct"},
+ {"source_table":"stg_orders_legacy","target_table":"jinja_source_and_ref_mixed","transform_type":"direct"}]}

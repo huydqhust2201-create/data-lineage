@@ -1,0 +1,10 @@
+{
+  "question": "xoá amount_paid thì vỡ gì?",
+  "must_call": ["assess_change"],
+  "must_not_call": [],
+  "must_contain": ["stg_invoices"],
+  "max_calls": 4,
+  "band": "expect-change-risk",
+  "description_expected": false,
+  "requires_tables": ["raw_invoices", "stg_invoices"]
+}

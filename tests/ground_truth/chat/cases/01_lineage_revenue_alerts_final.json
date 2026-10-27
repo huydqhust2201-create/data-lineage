@@ -1,0 +1,18 @@
+{
+  "question": "revenue_alerts_final lấy dữ liệu từ đâu?",
+  "must_call": [
+    "traverse"
+  ],
+  "must_not_call": [
+    "breaking_changes",
+    "assess_change"
+  ],
+  "must_contain": ["revenue_alerts_staging"],
+  "max_calls": 3,
+  "band": "expect-single-tool",
+  "description_expected": false,
+  "requires_tables": [
+    "revenue_alerts_final",
+    "revenue_alerts_staging"
+  ]
+}

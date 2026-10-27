@@ -1,0 +1,433 @@
+{
+  "cases": [
+    {
+      "name": "01_lineage_revenue_alerts_final",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 276
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 534
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 481
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "02_diagnose_revenue_alerts",
+      "runs": [
+        {
+          "tools_called": [
+            "breaking_changes"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 257
+        },
+        {
+          "tools_called": [
+            "breaking_changes"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 286
+        },
+        {
+          "tools_called": [
+            "breaking_changes"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 262
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "03_assess_amount_paid",
+      "runs": [
+        {
+          "tools_called": [
+            "search_column_description",
+            "assess_change",
+            "assess_change"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 285
+        },
+        {
+          "tools_called": [
+            "search_tables",
+            "search_column_description"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": false,
+          "content_passed": true,
+          "passed": false,
+          "failures": [
+            "missing_tools: assess_change"
+          ],
+          "api_error": false,
+          "answer_chars": 228
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "assess_change",
+            "assess_change"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 368
+        }
+      ],
+      "pass_rate": 0.6666666666666666,
+      "status": "failed"
+    },
+    {
+      "name": "04_column_projected_revenue",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 714
+        },
+        {
+          "tools_called": [
+            "traverse",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 715
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 766
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "05_analyze_query_sources",
+      "runs": [
+        {
+          "tools_called": [
+            "analyze_query"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 179
+        },
+        {
+          "tools_called": [
+            "analyze_query"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 218
+        },
+        {
+          "tools_called": [
+            "analyze_query"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 218
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "06_preview_ddl_impact",
+      "runs": [
+        {
+          "tools_called": [
+            "preview_ddl_impact",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 346
+        },
+        {
+          "tools_called": [
+            "preview_ddl_impact",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 272
+        },
+        {
+          "tools_called": [
+            "preview_ddl_impact",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 312
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "07_rule_underperforming_doctors",
+      "runs": [
+        {
+          "tools_called": [
+            "search_tables"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "clarification",
+          "answer_rejected": false,
+          "tool_passed": false,
+          "content_passed": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: traverse",
+            "missing_content: appointment_count, 5"
+          ],
+          "api_error": false,
+          "answer_chars": 260
+        },
+        {
+          "tools_called": [
+            "search_tables",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 321
+        },
+        {
+          "tools_called": [
+            "search_tables",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 417
+        }
+      ],
+      "pass_rate": 0.6666666666666666,
+      "status": "failed"
+    },
+    {
+      "name": "09_join_condition_doctor",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 93
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 184
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 418
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    }
+  ],
+  "summary": {
+    "micro_average": 0.9166666666666666,
+    "tool_micro_average": 0.9166666666666666,
+    "content_micro_average": 0.9583333333333334,
+    "budget_exhausted_runs": 0,
+    "answer_rejected_runs": 0,
+    "average_tool_calls_per_executed_run": 1.4583333333333333,
+    "description_misuse_rate": 0.125,
+    "median_answer_chars_passing_runs": 299.0
+  },
+  "meta": {
+    "model": "google/gemini-3.5-flash-lite",
+    "git_revision": "42cd08a16add73f1a44818bd30fac4ff1c95ff5b",
+    "database_id": 1,
+    "user_id": 12480,
+    "runs_per_case": 3,
+    "timestamp": "2026-08-29T03:14:45.517332+00:00",
+    "chat_max_tool_calls": 6,
+    "chat_max_agent_steps": 4,
+    "chat_verify_mode": "warn"
+  }
+}

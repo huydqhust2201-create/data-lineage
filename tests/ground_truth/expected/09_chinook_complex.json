@@ -1,0 +1,56 @@
+[
+  {
+    "source_table": "employee",
+    "source_column": "first_name",
+    "target_table": "target_vip_customers",
+    "target_column": "sales_agent",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "employee",
+    "source_column": "last_name",
+    "target_table": "target_vip_customers",
+    "target_column": "sales_agent",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "customer",
+    "source_column": "customer_fullname",
+    "target_table": "target_vip_customers",
+    "target_column": "customer_fullname",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "track",
+    "source_column": "album_title",
+    "target_table": "target_vip_customers",
+    "target_column": "album_title",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "track",
+    "source_column": "genre_name",
+    "target_table": "target_vip_customers",
+    "target_column": "genre_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "invoice_line",
+    "source_column": "item_revenue",
+    "target_table": "target_vip_customers",
+    "target_column": "total_revenue",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

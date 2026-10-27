@@ -1,0 +1,74 @@
+[
+  {
+    "source_table": "items",
+    "source_column": "seller_id",
+    "target_table": "top_sellers",
+    "target_column": "seller_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "items",
+    "source_column": "order_month",
+    "target_table": "top_sellers",
+    "target_column": "order_month",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "items",
+    "source_column": "total_sales",
+    "target_table": "top_sellers",
+    "target_column": "monthly_sales",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "items",
+    "source_column": "total_payments",
+    "target_table": "top_sellers",
+    "target_column": "monthly_payments",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "sellers",
+    "source_column": "seller_state",
+    "target_table": "top_sellers",
+    "target_column": "seller_state",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "sellers",
+    "source_column": "seller_city",
+    "target_table": "top_sellers",
+    "target_column": "seller_city",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "items",
+    "source_column": "avg_review_score",
+    "target_table": "top_sellers",
+    "target_column": "avg_review_score",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "items",
+    "source_column": "total_reviews",
+    "target_table": "top_sellers",
+    "target_column": "total_reviews",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

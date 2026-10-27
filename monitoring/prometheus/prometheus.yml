@@ -1,0 +1,30 @@
+# Prometheus — scrape /metrics của backend.
+#
+# Lưu ý bảo mật: /metrics KHÔNG đi qua Caddy (Caddyfile chỉ proxy /api/* và
+# /health), nên endpoint này không lộ ra Internet. Prometheus tới được vì nó
+# nằm cùng network compose với backend và gọi trực tiếp "backend:8000".
+# Đây là chủ ý: metric nội bộ không nên public.
+
+global:
+  # 15s là mức quen dùng: đủ mịn để thấy spike, mà 1 ngày cũng chỉ ~5.760
+  # điểm/series nên không phình đĩa trên instance nhỏ.
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  external_labels:
+    env: production
+
+scrape_configs:
+  - job_name: lineage-backend
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["backend:8000"]
+        labels:
+          service: backend
+
+  # Tự scrape chính nó — để biết Prometheus còn sống và scrape có bị chậm
+  # không (prometheus_target_interval_length_seconds).
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+        labels:
+          service: prometheus

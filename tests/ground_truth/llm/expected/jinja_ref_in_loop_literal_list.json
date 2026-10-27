@@ -1,0 +1,4 @@
+{"description":"for-loop over an in-file literal list of model names","band":"expect-low-confidence-true","expected_edges":[
+ {"source_table":"stg_orders","target_table":"jinja_ref_in_loop_literal_list","transform_type":"direct"},
+ {"source_table":"stg_returns","target_table":"jinja_ref_in_loop_literal_list","transform_type":"direct"},
+ {"source_table":"stg_refunds","target_table":"jinja_ref_in_loop_literal_list","transform_type":"direct"}]}

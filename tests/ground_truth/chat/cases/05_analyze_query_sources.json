@@ -1,0 +1,10 @@
+{
+  "question": "Query này lấy dữ liệu từ đâu? SELECT d.department_name, SUM(i.amount_paid) AS total_revenue FROM stg_invoices i JOIN stg_doctors d ON d.id = i.doctor_id GROUP BY d.department_name",
+  "must_call": ["analyze_query"],
+  "must_not_call": ["preview_ddl_impact"],
+  "must_contain": ["stg_invoices"],
+  "max_calls": 4,
+  "band": "expect-query-analysis",
+  "description_expected": false,
+  "requires_tables": ["stg_invoices", "stg_doctors"]
+}

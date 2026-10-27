@@ -1,0 +1,6 @@
+{
+  "description": "Incremental model with intentional self reference",
+  "expected_edges": [
+    {"source_table": "stg_orders", "target_table": "jinja_incremental", "transform_type": "direct"}
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "source_table": "actor",
+    "source_column": "actor_fullname",
+    "target_table": "top_actor_films",
+    "target_column": "actor_fullname",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "customer",
+    "source_column": "customer_fullname",
+    "target_table": "top_actor_films",
+    "target_column": "customer_fullname",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "customer",
+    "source_column": "city",
+    "target_table": "top_actor_films",
+    "target_column": "city",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "customer",
+    "source_column": "country",
+    "target_table": "top_actor_films",
+    "target_column": "country",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "customer",
+    "source_column": "store_id",
+    "target_table": "top_actor_films",
+    "target_column": "store_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "actor",
+    "source_column": "film_title",
+    "target_table": "top_actor_films",
+    "target_column": "film_title",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "actor",
+    "source_column": "total_film_revenue",
+    "target_table": "top_actor_films",
+    "target_column": "total_film_revenue",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "customer",
+    "source_column": "rental_count",
+    "target_table": "top_actor_films",
+    "target_column": "rental_count",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

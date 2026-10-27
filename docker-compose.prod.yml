@@ -1,0 +1,85 @@
+# Production compose — chạy trên 1 EC2 (xem docs/deploy_aws.md).
+# Khác docker-compose.yml (dev):
+#   - Service `embeddings` dùng model-id HuggingFace trực tiếp (BAAI/bge-m3)
+#     thay vì path cục bộ /data/bge-m3 như bản dev — TEI tự tải model về khi
+#     container khởi động lần đầu (cache vào volume tei_data), không cần
+#     predownload + scp ~2GB model lên server.
+#   - Có service `proxy` (Caddy): serve frontend/dist tĩnh + reverse-proxy
+#     /api và /health sang backend, để frontend (gọi API bằng đường dẫn tương
+#     đối, không có VITE_API_URL) và backend cùng 1 origin.
+#   - backend/db/embeddings KHÔNG map port ra host — chỉ proxy mới lộ ra ngoài (80/443).
+#   - POSTGRES_USER/PASSWORD/DB đọc từ .env — bắt buộc đổi mật khẩu mặc định.
+#   - Cần EC2 tối thiểu t3.medium (4GB RAM) khi bật embeddings — t3.small (2GB)
+#     không đủ chạy thêm bge-m3.
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-lineage}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD chua duoc set trong .env}@db:5432/${POSTGRES_DB:-lineage}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data
+    restart: always
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lineage}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD chua duoc set trong .env}
+      POSTGRES_DB: ${POSTGRES_DB:-lineage}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lineage}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  embeddings:
+    # cpu-1.5 có bug (crate hf-hub 0.3.2): tải model repo có redirect ra lỗi
+    # "relative URL without a base" — dùng cpu-latest thay thế.
+    # max-batch-tokens/max-client-batch-size giảm từ mặc định (16384/32)
+    # xuống 2048/8: mặc định làm ONNX runtime warmup cấp phát ~7.4GB RAM và bị
+    # OOM-kill trên instance 8GB (đã tái hiện + xác nhận qua dmesg lúc deploy
+    # thật). 2048 token/input là dư cho text mô tả bảng/cột (không phải văn
+    # bản dài), auto-truncate mặc định true nên input dài hơn vẫn chạy được,
+    # chỉ bị cắt bớt.
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
+    platform: linux/amd64
+    command: ["--model-id", "BAAI/bge-m3", "--max-batch-tokens", "2048", "--max-client-batch-size", "8"]
+    volumes:
+      - tei_data:/data
+    restart: always
+
+  proxy:
+    image: caddy:2-alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./frontend/dist:/srv/frontend:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
+  tei_data:

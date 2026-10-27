@@ -1,0 +1,537 @@
+{
+  "cases": [
+    {
+      "name": "01_lineage_revenue_alerts_final",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 489
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 120
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 231
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "02_diagnose_revenue_alerts",
+      "runs": [
+        {
+          "tools_called": [
+            "breaking_changes"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 256
+        },
+        {
+          "tools_called": [
+            "breaking_changes"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 307
+        },
+        {
+          "tools_called": [
+            "breaking_changes"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 299
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "03_assess_amount_paid",
+      "runs": [
+        {
+          "tools_called": [
+            "search_column_description",
+            "assess_change"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 427
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "assess_change",
+            "assess_change"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 348
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "assess_change"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 327
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "04_column_projected_revenue",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 618
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 714
+        },
+        {
+          "tools_called": [
+            "traverse",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 811
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "05_analyze_query_sources",
+      "runs": [
+        {
+          "tools_called": [
+            "analyze_query"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 194
+        },
+        {
+          "tools_called": [
+            "analyze_query"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 291
+        },
+        {
+          "tools_called": [
+            "analyze_query"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 233
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "06_preview_ddl_impact",
+      "runs": [
+        {
+          "tools_called": [
+            "preview_ddl_impact"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 317
+        },
+        {
+          "tools_called": [
+            "preview_ddl_impact"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 353
+        },
+        {
+          "tools_called": [
+            "preview_ddl_impact",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 122
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "07_rule_underperforming_doctors",
+      "runs": [
+        {
+          "tools_called": [
+            "search_by_description",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "clarification",
+          "answer_rejected": false,
+          "tool_passed": false,
+          "content_passed": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: traverse",
+            "missing_content: appointment_count, 5"
+          ],
+          "api_error": false,
+          "answer_chars": 473
+        },
+        {
+          "tools_called": [
+            "search_by_description",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "clarification",
+          "answer_rejected": false,
+          "tool_passed": false,
+          "content_passed": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: traverse",
+            "missing_content: appointment_count, 5"
+          ],
+          "api_error": false,
+          "answer_chars": 147
+        },
+        {
+          "tools_called": [
+            "search_tables",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 916
+        }
+      ],
+      "pass_rate": 0.3333333333333333,
+      "status": "failed"
+    },
+    {
+      "name": "09_join_condition_doctor",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 280
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 238
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 202
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "10_diagnose_column_high_risk_claim",
+      "runs": [
+        {
+          "tools_called": [
+            "breaking_changes",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 626
+        },
+        {
+          "tools_called": [
+            "breaking_changes",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 764
+        },
+        {
+          "tools_called": [
+            "breaking_changes",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 1077
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "11_diagnose_column_abnormal_lab_count",
+      "runs": [
+        {
+          "tools_called": [
+            "breaking_changes",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 600
+        },
+        {
+          "tools_called": [
+            "breaking_changes",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 526
+        },
+        {
+          "tools_called": [
+            "breaking_changes",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "tool_passed": true,
+          "content_passed": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false,
+          "answer_chars": 627
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    }
+  ],
+  "summary": {
+    "micro_average": 0.9333333333333333,
+    "tool_micro_average": 0.9333333333333333,
+    "content_micro_average": 0.9333333333333333,
+    "budget_exhausted_runs": 0,
+    "answer_rejected_runs": 0,
+    "average_tool_calls_per_executed_run": 1.5333333333333334,
+    "description_misuse_rate": 0.1,
+    "median_answer_chars_passing_runs": 337.5
+  },
+  "meta": {
+    "model": "google/gemini-3.5-flash-lite",
+    "git_revision": "26b79dcca343e149db74d37954cf7493d820b0ed",
+    "database_id": 1,
+    "user_id": 12480,
+    "runs_per_case": 3,
+    "timestamp": "2026-08-30T03:13:54.642099+00:00",
+    "chat_max_tool_calls": 6,
+    "chat_max_agent_steps": 4,
+    "chat_verify_mode": "warn"
+  }
+}

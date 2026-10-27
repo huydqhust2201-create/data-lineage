@@ -1,0 +1,63 @@
+# Loki 3.x chạy single-process, lưu trên filesystem.
+#
+# Vì sao không dùng object storage (S3): dự án deploy trên 1 EC2 đơn, log
+# giữ 7 ngày là đủ để điều tra sự cố. Thêm S3 lúc này chỉ thêm IAM, thêm chi
+# phí, thêm thứ phải vận hành — chưa đổi lại được gì.
+#
+# replication_factor: 1 + ring inmemory: cấu hình 1 node, không có cluster để
+# replicate sang. Đặt > 1 thì Loki sẽ chờ quorum không bao giờ tới.
+
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9096
+  # warn thay vì info: Loki ở mức info rất ồn, mà chính nó cũng ghi log vào
+  # Docker nên Alloy sẽ hút lại — dễ thành vòng log tự nuôi nhau.
+  log_level: warn
+
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+schema_config:
+  configs:
+    # Để trong nháy: "from" dùng kiểu DayTime riêng của Loki và nó unmarshal
+    # từ string. Không nháy thì YAML tự parse thành date và Loki báo lỗi kiểu.
+    - from: "2024-01-01"
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+limits_config:
+  # 7 ngày — cân giữa "đủ để truy sự cố tuần trước" và đĩa EBS 1 instance.
+  retention_period: 168h
+  ingestion_rate_mb: 4
+  ingestion_burst_size_mb: 8
+  # Chặn trần số stream: mỗi tổ hợp label là 1 stream, nếu vô tình promote 1
+  # label cardinality cao (vd user_id) thì Loki bị ép dừng thay vì ăn hết RAM.
+  max_streams_per_user: 1000
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h
+
+compactor:
+  working_directory: /loki/compactor
+  delete_request_store: filesystem
+  # Không bật thì retention_period ở trên chỉ là con số trang trí — log cũ
+  # không bao giờ bị xoá và đĩa cứ đầy dần.
+  retention_enabled: true
+  compaction_interval: 10m
+
+analytics:
+  reporting_enabled: false

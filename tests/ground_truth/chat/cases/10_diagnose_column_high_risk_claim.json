@@ -1,0 +1,11 @@
+{
+  "question": "cột high_risk_claim của insurance_risk_alerts đang sai, tại sao?",
+  "must_call": ["breaking_changes", "traverse"],
+  "must_not_call": [],
+  "must_contain": ["insurance_claims_summary", "claim_status"],
+  "must_not_contain": ["chưa biết bạn đang nói đến bảng nào"],
+  "max_calls": 5,
+  "band": "expect-column-diagnostic",
+  "description_expected": false,
+  "requires_tables": ["insurance_risk_alerts", "insurance_claims_summary"]
+}

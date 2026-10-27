@@ -1,0 +1,13 @@
+{
+  "_comment": "Ground-truth table-level lineage cho các file samples/hospital mà parser tĩnh fail. Nguồn = hợp mọi nhánh Jinja if/else/for, target = tên file. Do team tự viết (2026-08-28). Dùng với: python -m eval.compare_prompt_versions --gt eval/ground_truth_hospital_fallback.json",
+  "bed_occupancy_forecast": ["patient_visit_summary", "department_capacity_snapshot"],
+  "discharge_summary": ["legacy_admissions", "stg_admissions"],
+  "insurance_claims_summary": ["partner_claims_feed", "stg_invoices"],
+  "revenue_alerts_final": ["revenue_alerts_staging", "manual_finance_review_queue"],
+  "revenue_alerts_staging": ["beta_pricing_snapshot", "department_revenue"],
+  "staff_scheduling_summary": ["contractor_roster", "stg_doctors"],
+  "underperforming_doctors": ["doctor_workload", "hr_review_flagged_staff"],
+  "vip_patient_offers": ["patient_risk_score"],
+  "department_alerts": [],
+  "monthly_lab_summary": []
+}

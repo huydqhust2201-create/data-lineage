@@ -1,0 +1,6 @@
+# Script và manifest chạy trong Linux (VM, container, CI) phải giữ LF.
+# Git for Windows mặc định đổi sang CRLF khi checkout, làm bash báo
+# "$'\r': command not found" và YAML đôi khi parse sai.
+*.sh   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf

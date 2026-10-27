@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Ghi chú deploy cá nhân — chứa IP/ID tài nguyên AWS thật, chỉ đọc local
+docs/deploy_notes.local.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+logs/
+Thumbs.db
+
+# Data (never commit large data) — chỉ ignore data/ ở ROOT (data/chroma,
+# data/tei runtime), KHÔNG ignore data/ lồng trong thư mục con (vd
+# frontend/src/data/) — trước đây pattern không có "/" đầu từng nuốt mất
+# frontend/src/data/mockProjects.ts của 1 PR thật (PR #60), khiến build FE
+# lỗi "Cannot find module" mà không ai biết vì git âm thầm bỏ qua file đó.
+/data/
+*.db
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Test coverage
+htmlcov/
+.coverage
+coverage.xml
+
+# Eval — cache chứa response LLM thật (eval/README.md), không commit
+eval/.cache/
+
+# Docker
+docker-compose.override.yml
+
+# Node (frontend)
+node_modules/
+.next/
+out/
+.nuxt/
+*.tsbuildinfo
+.vite/
+
+# Build
+*.pyc
+*.pyo
+
+# AI logs — tracked structure, ignored content
+.ai-log/*.jsonl
+.ai-log/archive/

@@ -1,0 +1,38 @@
+[
+  {
+    "source_table": "stg_orders",
+    "source_column": "order_id",
+    "target_table": "all_orders",
+    "target_column": "order_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders_app",
+    "source_column": "order_id",
+    "target_table": "all_orders",
+    "target_column": "order_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "amount",
+    "target_table": "all_orders",
+    "target_column": "amount",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders_app",
+    "source_column": "amount",
+    "target_table": "all_orders",
+    "target_column": "amount",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

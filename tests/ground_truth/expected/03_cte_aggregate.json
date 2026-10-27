@@ -1,0 +1,29 @@
+[
+  {
+    "source_table": "orders",
+    "source_column": "order_id",
+    "target_table": "joined",
+    "target_column": "count_lifetime_orders",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "ordered_at",
+    "target_table": "joined",
+    "target_column": "first_ordered_at",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "orders",
+    "source_column": "order_total",
+    "target_table": "joined",
+    "target_column": "lifetime_spend",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

@@ -1,0 +1,36 @@
+# ---- Stage 1: Build ----
+FROM python:3.11-slim AS builder
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# ---- Stage 2: Production ----
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Security: run as non-root user
+RUN useradd -m appuser
+
+# Copy installed packages from builder — vào $HOME của appuser, không phải
+# /root, vì /root không cho non-root user truy cập (permission denied khi
+# chạy uvicorn nếu copy vào /root/.local như trước).
+COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local
+ENV PATH=/home/appuser/.local/bin:$PATH
+
+# Copy application code
+COPY . .
+
+# Create data directory with correct ownership
+RUN mkdir -p /app/data && chown -R appuser:appuser /app
+
+USER appuser
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]

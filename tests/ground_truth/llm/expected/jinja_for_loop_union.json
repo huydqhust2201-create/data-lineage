@@ -1,0 +1,7 @@
+{
+  "description": "Jinja loop source union",
+  "expected_edges": [
+    {"source_table": "raw.vn_orders", "target_table": "jinja_for_loop_union", "transform_type": "direct"},
+    {"source_table": "raw.us_orders", "target_table": "jinja_for_loop_union", "transform_type": "direct"}
+  ]
+}

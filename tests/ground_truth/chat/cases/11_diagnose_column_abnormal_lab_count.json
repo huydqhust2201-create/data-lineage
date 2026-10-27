@@ -1,0 +1,11 @@
+{
+  "question": "số liệu cột abnormal_lab_count trong patient_risk_score bị lệch, nguyên nhân có thể là gì?",
+  "must_call": ["breaking_changes", "traverse"],
+  "must_not_call": [],
+  "must_contain": ["stg_lab_results", "is_abnormal"],
+  "must_not_contain": ["chưa biết bạn đang nói đến bảng nào"],
+  "max_calls": 5,
+  "band": "expect-column-diagnostic",
+  "description_expected": false,
+  "requires_tables": ["patient_risk_score", "stg_lab_results"]
+}

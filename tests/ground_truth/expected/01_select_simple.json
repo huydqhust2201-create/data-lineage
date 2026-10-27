@@ -1,0 +1,20 @@
+[
+  {
+    "source_table": "raw_customers",
+    "source_column": "id",
+    "target_table": "renamed",
+    "target_column": "customer_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "raw_customers",
+    "source_column": "name",
+    "target_table": "renamed",
+    "target_column": "customer_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

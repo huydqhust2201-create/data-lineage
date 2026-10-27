@@ -1,0 +1,10 @@
+{
+  "question": "Nếu deploy `DROP TABLE revenue_alerts_staging;` thì những bảng nào bị ảnh hưởng?",
+  "must_call": ["preview_ddl_impact"],
+  "must_not_call": ["analyze_query"],
+  "must_contain": ["revenue_alerts_final"],
+  "max_calls": 4,
+  "band": "expect-ddl-preview",
+  "description_expected": false,
+  "requires_tables": ["revenue_alerts_staging", "revenue_alerts_final"]
+}

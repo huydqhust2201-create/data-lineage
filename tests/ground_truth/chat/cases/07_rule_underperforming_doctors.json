@@ -1,0 +1,21 @@
+{
+  "question": "làm thế nào để 1 doctor được đánh dấu là underperforming_doctors?",
+  "must_call": [
+    "traverse"
+  ],
+  "must_not_call": [],
+  "max_calls": 4,
+  "band": "expect-rule-evidence",
+  "description_expected": false,
+  "requires_tables": [
+    "underperforming_doctors",
+    "doctor_workload"
+  ],
+  "must_contain": [
+    "appointment_count",
+    "5"
+  ],
+  "must_not_contain": [
+    "chưa biết bạn đang nói đến bảng nào"
+  ]
+}

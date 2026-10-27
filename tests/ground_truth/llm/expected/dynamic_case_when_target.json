@@ -1,0 +1,3 @@
+{"description":"branch-selected literal targets from one literal source","band":"expect-low-confidence-true","expected_edges":[
+ {"source_table":"raw.sales","target_table":"fct_sales_daily","transform_type":"direct"},
+ {"source_table":"raw.sales","target_table":"fct_sales_monthly","transform_type":"direct"}]}

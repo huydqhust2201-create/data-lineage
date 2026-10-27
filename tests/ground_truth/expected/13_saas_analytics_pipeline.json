@@ -1,0 +1,155 @@
+[
+  {
+    "source_table": "raw.customers",
+    "source_column": "customer_id",
+    "target_table": "stg_customers",
+    "target_column": "customer_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "raw.customers",
+    "source_column": "email",
+    "target_table": "stg_customers",
+    "target_column": "email",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "raw.orders",
+    "source_column": "subtotal_amount",
+    "target_table": "stg_orders",
+    "target_column": "order_total",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "raw.orders",
+    "source_column": "tax_amount",
+    "target_table": "stg_orders",
+    "target_column": "order_total",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "raw.support_tickets",
+    "source_column": "resolution_hours",
+    "target_table": "stg_support_tickets",
+    "target_column": "resolution_hours",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "customer_id",
+    "target_table": "int_customer_order_rank",
+    "target_column": "customer_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "total_spent",
+    "target_table": "int_customer_order_rank",
+    "target_column": "total_spent",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_support_tickets",
+    "source_column": "priority",
+    "target_table": "int_support_sla_status",
+    "target_column": "sla_status",
+    "transform_type": "conditional",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_support_tickets",
+    "source_column": "resolution_hours",
+    "target_table": "int_support_sla_status",
+    "target_column": "sla_status",
+    "transform_type": "conditional",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "int_customer_order_rank",
+    "source_column": "total_spent",
+    "target_table": "mart_customer_risk",
+    "target_column": "total_spent",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_customers",
+    "source_column": "email",
+    "target_table": "mart_customer_risk",
+    "target_column": "email",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "int_support_sla_status",
+    "source_column": "sla_status",
+    "target_table": "mart_customer_risk",
+    "target_column": "breached_ticket_count",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "activity_type",
+    "target_table": "mart_daily_activity",
+    "target_column": "running_total",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "mart_customer_risk",
+    "source_column": "total_spent",
+    "target_table": "mart_vip_flag",
+    "target_column": "total_spent",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "mart_customer_risk",
+    "source_column": "spend_rank",
+    "target_table": "mart_vip_flag",
+    "target_column": "customer_segment",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "mart_vip_flag",
+    "source_column": "customer_segment",
+    "target_table": "rpt_customer_risk_dashboard",
+    "target_column": "customer_segment",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "mart_customer_risk",
+    "source_column": "breached_ticket_count",
+    "target_table": "rpt_customer_risk_dashboard",
+    "target_column": "breached_ticket_count",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "model": "google/gemini-3.5-flash-lite",
+    "git_revision": "42cd08a16add73f1a44818bd30fac4ff1c95ff5b",
+    "timestamp": "2026-08-29T03:48:49.172490+00:00",
+    "database_id": 1,
+    "user_id": 12480
+  },
+  "runs_per_question": 5,
+  "results": [
+    {
+      "question": "nó được lấy từ đâu",
+      "run": 1,
+      "answer": "Tôi chưa thể xác định bảng nào được đề cập để tìm nguồn gốc dữ liệu. Vui lòng nêu rõ tên bảng hoặc cột bạn muốn kiểm tra.",
+      "label": "vi"
+    },
+    {
+      "question": "nó được lấy từ đâu",
+      "run": 2,
+      "answer": "Tôi không thể xác định được bảng hoặc cột nào được đề cập vì câu hỏi không chỉ định tên đối tượng. Vui lòng cho biết tên bảng hoặc cột bạn muốn tìm nguồn gốc.",
+      "label": "vi"
+    },
+    {
+      "question": "nó được lấy từ đâu",
+      "run": 3,
+      "answer": "Tôi không thể xác định bảng hoặc cột cụ thể nào được hỏi đến vì câu hỏi không nêu rõ tên đối tượng. Vui lòng nêu rõ tên bảng hoặc cột bạn muốn tìm nguồn gốc.",
+      "label": "vi"
+    },
+    {
+      "question": "nó được lấy từ đâu",
+      "run": 4,
+      "answer": "Tôi không thể xác định bảng hoặc cột cụ thể nào được hỏi đến vì câu hỏi không nêu rõ tên đối tượng. Vui lòng nêu rõ tên bảng hoặc cột bạn muốn tìm nguồn gốc để tôi có thể kiểm tra lại.",
+      "label": "vi"
+    },
+    {
+      "question": "nó được lấy từ đâu",
+      "run": 5,
+      "answer": "Tôi không thể xác định bảng hoặc cột cụ thể nào được hỏi vì câu hỏi \"nó\" không nêu tên đối tượng, nhưng đồ thị dòng dữ liệu hiện chứa thông tin về các bảng như `stg_appointments`, `doctor_workload`, và `patient_visit_summary`. Vui lòng nêu rõ tên bảng hoặc cột bạn muốn tìm nguồn gốc để tôi kiểm tra lại.",
+      "label": "vi"
+    },
+    {
+      "question": "revenue_alerts_final lấy dữ liệu từ đâu?",
+      "run": 1,
+      "answer": "Bảng `revenue_alerts_final` lấy dữ liệu từ các bảng `revenue_alerts_staging`, `manual_finance_review_queue` và `beta_pricing_snapshot`.\n\n* Bảng `revenue_alerts_staging` và `manual_finance_review_queue`: cung cấp dữ liệu trực tiếp cho `revenue_alerts_final` thông qua câu lệnh điều kiện Jinja trong `models/marts/revenue_alerts_final.sql`.\n* Bảng `beta_pricing_snapshot`: là nguồn upstream cấp độ 2 dẫn qua `revenue_alerts_staging` theo `models/marts/revenue_alerts_staging.sql`.",
+      "label": "vi"
+    },
+    {
+      "question": "revenue_alerts_final lấy dữ liệu từ đâu?",
+      "run": 2,
+      "answer": "Bảng `revenue_alerts_final` lấy dữ liệu từ các bảng `revenue_alerts_staging` và `manual_finance_review_queue`. Ngoài ra, `revenue_alerts_staging` nhận dữ liệu từ bảng `beta_pricing_snapshot`.\n\n* Bảng `revenue_alerts_final` lấy dữ liệu qua tệp `models/marts/revenue_alerts_final.sql` với điều kiện lọc `projected_revenue < 0` từ `revenue_alerts_staging` (dựa trên `models/marts/revenue_alerts_final.sql`).",
+      "label": "vi"
+    },
+    {
+      "question": "revenue_alerts_final lấy dữ liệu từ đâu?",
+      "run": 3,
+      "answer": "Bảng `revenue_alerts_final` lấy dữ liệu trực tiếp từ hai nguồn `revenue_alerts_staging` và `manual_finance_review_queue`.\n\n* Bảng `revenue_alerts_staging` được sử dụng khi biến `escalate_to_finance` được bật và có lọc điều kiện `projected_revenue < 0` (theo `models/marts/revenue_alerts_final.sql`).\n* Bảng `manual_finance_review_queue` được sử dụng trong nhánh `else` khi biến `escalate_to_finance` không được bật.\n* Bảng `revenue_alerts_staging` nhận dữ liệu từ `beta_pricing_snapshot`.",
+      "label": "vi"
+    },
+    {
+      "question": "revenue_alerts_final lấy dữ liệu từ đâu?",
+      "run": 4,
+      "answer": "Bảng `revenue_alerts_final` lấy dữ liệu từ các bảng nguồn `revenue_alerts_staging` và `manual_finance_review_queue`. Ngoài ra, `revenue_alerts_staging` lại nhận dữ liệu từ các bảng `beta_pricing_snapshot` và `department_revenue`.",
+      "label": "vi"
+    },
+    {
+      "question": "revenue_alerts_final lấy dữ liệu từ đâu?",
+      "run": 5,
+      "answer": "Bảng `revenue_alerts_final` lấy dữ liệu từ các bảng `revenue_alerts_staging`, `manual_finance_review_queue` và `beta_pricing_snapshot`.\n\n* Bảng `revenue_alerts_staging` (models/marts/revenue_alerts_final.sql)\n* Bảng `manual_finance_review_queue` (models/marts/revenue_alerts_final.sql)\n* Bảng `beta_pricing_snapshot` (models/marts/revenue_alerts_staging.sql)",
+      "label": "vi"
+    }
+  ]
+}

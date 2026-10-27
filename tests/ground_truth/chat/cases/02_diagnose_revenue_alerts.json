@@ -1,0 +1,20 @@
+{
+  "question": "revenue_alerts_staging bị lỗi, tại sao?",
+  "must_call": [
+    "breaking_changes"
+  ],
+  "must_not_call": [],
+  "max_calls": 6,
+  "band": "expect-diagnostic",
+  "description_expected": false,
+  "requires_tables": [
+    "revenue_alerts_staging",
+    "revenue_alerts_final"
+  ],
+  "must_contain": [
+    "department_revenue"
+  ],
+  "must_not_contain": [
+    "chưa biết bạn đang nói đến bảng nào"
+  ]
+}

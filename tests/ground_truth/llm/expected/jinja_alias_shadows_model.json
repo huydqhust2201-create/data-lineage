@@ -1,0 +1,2 @@
+{"description":"alias shadows a real model name","band":"expect-confident-wrong","expected_edges":[
+ {"source_table":"stg_payments","target_table":"jinja_alias_shadows_model","transform_type":"direct"}]}

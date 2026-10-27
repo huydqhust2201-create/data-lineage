@@ -1,0 +1,38 @@
+[
+  {
+    "source_table": "stg_order_items",
+    "source_column": "order_id",
+    "target_table": "joined",
+    "target_column": "order_id",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_orders",
+    "source_column": "ordered_at",
+    "target_table": "joined",
+    "target_column": "ordered_at",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_products",
+    "source_column": "product_name",
+    "target_table": "joined",
+    "target_column": "product_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_supplies",
+    "source_column": "supply_cost",
+    "target_table": "joined",
+    "target_column": "supply_cost",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

@@ -1,0 +1,3 @@
+{"description":"two INSERT targets in one file; pairs must not cross","band":"expect-confident-wrong","expected_edges":[
+ {"source_table":"raw.orders","target_table":"fct_orders","transform_type":"direct"},
+ {"source_table":"raw.customers","target_table":"fct_customers","transform_type":"direct"}]}

@@ -1,0 +1,81 @@
+// Grafana Alloy — hút log mọi container Docker rồi đẩy sang Loki.
+//
+// Vì sao Alloy mà không phải Promtail: Grafana đã công bố deprecate Promtail
+// (EOL tháng 3/2026) và Alloy là bản thay thế chính thức. Viết mới bằng
+// Promtail bây giờ là viết vào thứ đã hết hạn hỗ trợ.
+//
+// Vì sao đọc Docker socket mà không đọc file log: container của dự án ghi log
+// ra stdout (đúng 12-factor), Docker giữ log đó. Mount socket thì không phải
+// sửa gì trong app, và tự động thấy container mới mà không cần khai báo.
+// Đổi lại: socket Docker là quyền tương đương root trên host, nên mount :ro
+// và chỉ chạy Alloy trên server mình kiểm soát.
+
+// ---- 1. Tìm container đang chạy ----
+discovery.docker "containers" {
+	host             = "unix:///var/run/docker.sock"
+	refresh_interval = "15s"
+}
+
+// ---- 2. Đổi metadata Docker thành label gọn ----
+discovery.relabel "containers" {
+	targets = discovery.docker.containers.targets
+
+	// __meta_docker_container_name có dạng "/lineage-backend" — bỏ dấu "/".
+	rule {
+		source_labels = ["__meta_docker_container_name"]
+		regex         = "/(.*)"
+		target_label  = "container"
+	}
+
+	// Tên service trong docker-compose (backend, db, proxy, prometheus...).
+	// Dùng label này để query thay vì tên container vì nó ổn định hơn khi
+	// compose đổi prefix project.
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+		target_label  = "service"
+	}
+}
+
+// ---- 3. Đọc log ----
+loki.source.docker "containers" {
+	host       = "unix:///var/run/docker.sock"
+	targets    = discovery.relabel.containers.output
+	labels     = {platform = "docker"}
+	forward_to = [loki.process.app_logs.receiver]
+}
+
+// ---- 4. Parse JSON log của backend ----
+loki.process "app_logs" {
+	forward_to = [loki.write.default.receiver]
+
+	// Backend ghi JSON 1 dòng/log (src/logging_config.py). Các container khác
+	// (Postgres, Caddy) ghi text thuần — stage này parse không ra thì bỏ qua,
+	// dòng log vẫn được đẩy sang Loki nguyên văn, không bị mất.
+	stage.json {
+		expressions = {
+			level  = "level",
+			logger = "logger",
+			route  = "route",
+			status = "status",
+		}
+	}
+
+	// CHỈ promote level và route thành label.
+	// status/logger cố ý KHÔNG promote: label trong Loki là chiều index, mỗi
+	// tổ hợp label là 1 stream riêng — thêm bừa thì nổ cardinality đúng như
+	// bên Prometheus. Hai field đó vẫn query được qua `| json | status=500`,
+	// chỉ là không được index sẵn.
+	stage.labels {
+		values = {
+			level = "",
+			route = "",
+		}
+	}
+}
+
+// ---- 5. Đẩy sang Loki ----
+loki.write "default" {
+	endpoint {
+		url = "http://loki:3100/loki/api/v1/push"
+	}
+}

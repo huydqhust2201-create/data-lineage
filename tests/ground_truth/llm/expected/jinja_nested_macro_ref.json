@@ -1,0 +1,3 @@
+{"description":"in-file macro wrapping ref(), invoked twice with literals","band":"expect-high-confidence-true","expected_edges":[
+ {"source_table":"stg_orders","target_table":"jinja_nested_macro_ref","transform_type":"direct"},
+ {"source_table":"stg_returns","target_table":"jinja_nested_macro_ref","transform_type":"direct"}]}

@@ -1,0 +1,74 @@
+[
+  {
+    "source_table": "User",
+    "source_column": "username",
+    "target_table": "ranked_user_memories",
+    "target_column": "user_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "UserStats",
+    "source_column": "totalPoints",
+    "target_table": "ranked_user_memories",
+    "target_column": "total_points",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "UserStats",
+    "source_column": "currentStreak",
+    "target_table": "ranked_user_memories",
+    "target_column": "current_streak",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "alarm_label",
+    "target_table": "ranked_user_memories",
+    "target_column": "alarm_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "requiredHoldDurationSec",
+    "target_table": "ranked_user_memories",
+    "target_column": "hold_duration",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "reaction_time_sec",
+    "target_table": "ranked_user_memories",
+    "target_column": "best_reaction_time",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "imageUri",
+    "target_table": "ranked_user_memories",
+    "target_column": "memory_image_uri",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "picture_desc",
+    "target_table": "ranked_user_memories",
+    "target_column": "memory_description",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

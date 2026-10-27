@@ -1,0 +1,7 @@
+{
+  "description": "dbt ref and source join",
+  "expected_edges": [
+    {"source_table": "stg_orders", "target_table": "jinja_ref_source", "transform_type": "direct"},
+    {"source_table": "raw.customers", "target_table": "jinja_ref_source", "transform_type": "join"}
+  ]
+}

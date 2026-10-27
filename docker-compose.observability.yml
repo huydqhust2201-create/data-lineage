@@ -1,0 +1,107 @@
+# Overlay observability — KHÔNG chạy một mình được.
+#
+# Phải dùng kèm compose chính để tất cả nằm cùng network mặc định, nhờ đó
+# Prometheus gọi được "backend:8000":
+#
+#   docker compose -f docker-compose.prod.yml -f docker-compose.observability.yml up -d
+#
+# Tách thành file riêng thay vì nhét vào docker-compose.prod.yml: deploy hiện
+# tại (.github/workflows/cd.yml) chỉ truyền -f docker-compose.prod.yml, nên
+# thêm ở đây thì CD đang chạy không bị đổi hành vi, cũng không tự dưng tốn
+# thêm RAM trên server. Bật là một quyết định phải cố ý.
+#
+# ---- NGÂN SÁCH RAM (đọc trước khi bật) ----
+# Bốn service dưới đây giới hạn tổng ~940MB. EC2 hiện tại là t3.small (2GB)
+# đang chạy backend + Postgres + Caddy, nên KHÔNG đủ chỗ — bật lên là nguy cơ
+# OOM-kill đúng cái app đang muốn theo dõi. Cần t3.medium/m7i-flex.large (4GB+)
+# trước, xem docs/monitoring.md và quy trình đổi instance trong docs/deploy_aws.md.
+#
+# ---- TRUY CẬP ----
+# Grafana và Prometheus CHỈ bind vào 127.0.0.1 của host, không mở ra Internet.
+# Xem dashboard bằng SSH tunnel từ máy mình:
+#   ssh -L 3000:localhost:3000 ubuntu@datalineage.uk
+# rồi mở http://localhost:3000. Lý do: Grafana lộ ra ngoài là thêm một cửa
+# đăng nhập phải canh, mà ở đây không ai cần xem dashboard ngoài người vận hành.
+
+services:
+  prometheus:
+    image: prom/prometheus:v3.4.1
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      # Giữ 15 ngày VÀ chặn trần 2GB — điều kiện nào tới trước thì áp dụng.
+      # Chỉ đặt retention theo thời gian thì một đợt cardinality tăng vọt vẫn
+      # đủ sức làm đầy đĩa EBS.
+      - --storage.tsdb.retention.time=15d
+      - --storage.tsdb.retention.size=2GB
+      - --web.enable-lifecycle
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "127.0.0.1:9090:9090"
+    mem_limit: 256m
+    restart: always
+    depends_on:
+      - backend
+
+  loki:
+    image: grafana/loki:3.5.0
+    command: ["-config.file=/etc/loki/loki-config.yml"]
+    volumes:
+      - ./monitoring/loki/loki-config.yml:/etc/loki/loki-config.yml:ro
+      - loki_data:/loki
+    # Không map port ra host: chỉ Grafana (trong cùng network) và Alloy cần
+    # gọi Loki.
+    mem_limit: 256m
+    restart: always
+
+  alloy:
+    image: grafana/alloy:v1.8.1
+    command:
+      - run
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+      - /etc/alloy/config.alloy
+    volumes:
+      - ./monitoring/alloy/config.alloy:/etc/alloy/config.alloy:ro
+      # :ro — Alloy chỉ cần đọc danh sách container và log, không cần điều
+      # khiển Docker.
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - alloy_data:/var/lib/alloy/data
+    # Socket Docker thuộc group "docker" của host, user "alloy" trong image
+    # không nằm trong group đó nên sẽ bị permission denied. Chạy root là cách
+    # gọn nhất ở quy mô 1 server; muốn chặt hơn thì truyền group_add đúng GID
+    # của group docker trên host (khác nhau giữa các AMI).
+    user: root
+    mem_limit: 128m
+    restart: always
+    depends_on:
+      - loki
+
+  grafana:
+    image: grafana/grafana:11.6.1
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?GRAFANA_ADMIN_PASSWORD chua duoc set trong .env}
+      # Không ai cần tự đăng ký — chỉ người vận hành dùng.
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    mem_limit: 300m
+    restart: always
+    depends_on:
+      - prometheus
+      - loki
+
+volumes:
+  prometheus_data:
+  loki_data:
+  alloy_data:
+  grafana_data:

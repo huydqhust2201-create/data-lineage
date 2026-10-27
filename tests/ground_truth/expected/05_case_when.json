@@ -1,0 +1,20 @@
+[
+  {
+    "source_table": "stg_products",
+    "source_column": "is_food_item",
+    "target_table": "aggregated",
+    "target_column": "count_food_items",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "stg_products",
+    "source_column": "is_drink_item",
+    "target_table": "aggregated",
+    "target_column": "count_drink_items",
+    "transform_type": "aggregation",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

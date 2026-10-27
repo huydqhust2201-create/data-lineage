@@ -1,0 +1,45 @@
+name: CD (Deploy to Production)
+
+# Chạy sau khi workflow "CI" (ci.yml) hoàn thành thành công trên nhánh main —
+# không tự chạy song song với CI, đảm bảo chỉ deploy code đã pass lint+test.
+# Job "deploy" gắn với GitHub Environment "production": nếu environment đó có
+# cấu hình "Required reviewers" (Settings → Environments → production), job sẽ
+# dừng lại chờ người duyệt trước khi thực sự chạy — đây là approval gate.
+#
+# Secrets cần có (đã tạo qua API lúc setup, xem docs/deploy_notes.local.md):
+#   EC2_SSH_KEY — private key riêng cho CD (không phải key admin cá nhân)
+#   EC2_HOST    — domain/IP của server (datalineage.uk)
+
+# Bản cá nhân: TẮT tự động deploy. Workflow trỏ vào EC2 + secret của bản
+# triển khai cũ (datalineage.uk), repo này không có các secret đó. Giữ lại
+# làm tài liệu về cách CD có approval gate đã chạy; muốn dùng lại thì tạo
+# secret EC2_HOST/EC2_SSH_KEY + environment "production" rồi chạy tay.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            cd ~/lineage-ai
+            git pull
+            docker compose -f docker-compose.prod.yml up -d --build
+            docker compose -f docker-compose.prod.yml ps
+
+      - name: Verify health
+        run: curl -sf https://${{ secrets.EC2_HOST }}/health

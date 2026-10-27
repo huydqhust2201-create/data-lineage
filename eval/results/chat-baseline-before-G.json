@@ -1,0 +1,204 @@
+{
+  "cases": [
+    {
+      "name": "01_lineage_department_revenue",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "traverse"
+          ],
+          "tool_calls_used": 1,
+          "stop_reason": "completed",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        }
+      ],
+      "pass_rate": 1.0,
+      "status": "passed"
+    },
+    {
+      "name": "02_diagnose_revenue_alerts",
+      "runs": [
+        {
+          "tools_called": [
+            "traverse",
+            "breaking_changes",
+            "list_relationships"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "budget_exhausted",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "search_tables",
+            "traverse"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": true,
+          "passed": false,
+          "failures": [
+            "missing_tools: breaking_changes"
+          ],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "traverse",
+            "breaking_changes",
+            "list_relationships"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "budget_exhausted",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        }
+      ],
+      "pass_rate": 0.6666666666666666,
+      "status": "failed"
+    },
+    {
+      "name": "03_assess_total_revenue",
+      "runs": [
+        {
+          "tools_called": [
+            "search_column_description",
+            "search_tables",
+            "search_tables"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "clarification",
+          "answer_rejected": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: assess_change"
+          ],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: assess_change"
+          ],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: assess_change"
+          ],
+          "api_error": false
+        }
+      ],
+      "pass_rate": 0.0,
+      "status": "failed"
+    },
+    {
+      "name": "04_column_projected_revenue",
+      "runs": [
+        {
+          "tools_called": [
+            "search_column_description",
+            "search_tables"
+          ],
+          "tool_calls_used": 2,
+          "stop_reason": "completed",
+          "answer_rejected": false,
+          "passed": false,
+          "failures": [
+            "missing_tools: traverse"
+          ],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "search_tables",
+            "traverse"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "budget_exhausted",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        },
+        {
+          "tools_called": [
+            "search_column_description",
+            "search_tables",
+            "traverse"
+          ],
+          "tool_calls_used": 3,
+          "stop_reason": "budget_exhausted",
+          "answer_rejected": true,
+          "passed": true,
+          "failures": [],
+          "api_error": false
+        }
+      ],
+      "pass_rate": 0.6666666666666666,
+      "status": "failed"
+    }
+  ],
+  "summary": {
+    "micro_average": 0.5833333333333334,
+    "budget_exhausted_runs": 4,
+    "answer_rejected_runs": 8,
+    "average_tool_calls_per_executed_run": 2.1666666666666665
+  },
+  "meta": {
+    "model": "google/gemini-3.5-flash-lite",
+    "git_revision": "c7eec15a27c47a87a26f04a3d0bf2e53c33d6ebf",
+    "database_id": 1,
+    "runs_per_case": 3,
+    "timestamp": "2026-08-27T22:05:51.756787+00:00",
+    "chat_max_tool_calls": 6,
+    "chat_max_agent_steps": 4,
+    "chat_verify_mode": "replace"
+  }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "source_table": "User",
+    "source_column": "username",
+    "target_table": "user_progress_summary",
+    "target_column": "user_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "alarm_label",
+    "target_table": "user_progress_summary",
+    "target_column": "active_alarm",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "Alarm",
+    "source_column": "topicName",
+    "target_table": "user_progress_summary",
+    "target_column": "topic_name",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "History",
+    "source_column": "total_answered",
+    "target_table": "user_progress_summary",
+    "target_column": "answered_count",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "History",
+    "source_column": "accuracy_percentage",
+    "target_table": "user_progress_summary",
+    "target_column": "topic_accuracy",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "QuestionProgress",
+    "source_column": "current_streak",
+    "target_table": "user_progress_summary",
+    "target_column": "question_streak",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "QuestionProgress",
+    "source_column": "difficultyScore",
+    "target_table": "user_progress_summary",
+    "target_column": "question_difficulty",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  },
+  {
+    "source_table": "QuestionProgress",
+    "source_column": "userEloScore",
+    "target_table": "user_progress_summary",
+    "target_column": "elo_rating",
+    "transform_type": "direct",
+    "confidence": 1.0,
+    "source_type": "parser"
+  }
+]

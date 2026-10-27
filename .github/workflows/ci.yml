@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    # Runner miễn phí của GitHub. Bản gốc chạy trên self-hosted runner có sẵn
+    # Postgres đã seed; ở đây Postgres được dựng mới mỗi lần bằng service
+    # container, nên phải tự seed (bước "Seed" bên dưới).
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        # Phải là image có pgvector: schema tạo extension "vector" ngay lần
+        # kết nối đầu tiên (storage_service._connect).
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: lineage
+          POSTGRES_PASSWORD: lineage
+          POSTGRES_DB: lineage
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U lineage"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      APP_ENV: test
+      OPENROUTER_API_KEY: test-key
+      DATABASE_URL: postgresql://lineage:lineage@localhost:5432/lineage
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint with ruff
+        run: ruff check src/ tests/
+
+      - name: Seed user + database mặc định
+        # Test cần sẵn engineer@example.com và database "default"
+        # (fixture database_id trong tests/conftest.py).
+        run: python scripts/seed_auth.py
+        env:
+          PYTHONPATH: .
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short

@@ -1,0 +1,39 @@
+# Production reverse-proxy + static frontend server.
+# datalineage.uk — Caddy tự xin/gia hạn chứng chỉ HTTPS (Let's Encrypt).
+
+datalineage.uk {
+	root * /srv/frontend
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy backend:8000
+	}
+
+	handle /health {
+		reverse_proxy backend:8000
+	}
+
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+# ---- Fallback trực tiếp bằng IP (giữ lại để debug khi domain có sự cố) ----
+:80 {
+	root * /srv/frontend
+	encode gzip
+
+	handle /api/* {
+		reverse_proxy backend:8000
+	}
+
+	handle /health {
+		reverse_proxy backend:8000
+	}
+
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
+}

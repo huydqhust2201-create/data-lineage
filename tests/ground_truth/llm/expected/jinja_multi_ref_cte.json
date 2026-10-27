@@ -1,0 +1,4 @@
+{"description":"three CTEs each over a ref()","band":"expect-high-confidence-true","expected_edges":[
+ {"source_table":"stg_orders","target_table":"jinja_multi_ref_cte","transform_type":"join"},
+ {"source_table":"stg_customers","target_table":"jinja_multi_ref_cte","transform_type":"join"},
+ {"source_table":"stg_payments","target_table":"jinja_multi_ref_cte","transform_type":"join"}]}

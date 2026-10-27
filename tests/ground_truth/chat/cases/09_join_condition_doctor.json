@@ -1,0 +1,24 @@
+{
+  "question": "doctor_workload nối với stg_doctors qua đâu?",
+  "must_call": [
+    "traverse"
+  ],
+  "must_not_call": [],
+  "max_calls": 4,
+  "band": "expect-join-condition",
+  "description_expected": false,
+  "requires_tables": [
+    "doctor_workload",
+    "stg_doctors"
+  ],
+  "must_contain": [
+    "doctor_id"
+  ],
+  "must_not_contain": [
+    "khoá ngoại",
+    "khóa ngoại",
+    "foreign key",
+    "khoá chính",
+    "khóa chính"
+  ]
+}
